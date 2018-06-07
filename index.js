@@ -1,10 +1,23 @@
-var express = require('express')
-var app = express()
+// Library
+var express = require('express');
+var db = require('./db');
+var cors = require('cors');
 
+var Request = require('./models/request');
+
+var requestController = require('./controllers/request-controller');
+
+app = express();
+
+// Middlewares
+app.use(cors());
+app.use('/api/req', requestController);
+
+// Routers
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+  res.status(200).send("Hello, World.");
 })
 
 app.listen(8000, function () {
-  console.log('Example app listening on port 8000!')
+  console.log('Server listens on port 8000.');
 })
