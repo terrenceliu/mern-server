@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var db_uri = 
-process.env.MONGOLAB_URI || 
-process.env.MONGOHQ_URL ||
+process.env.MONGODB_URI ||
 "mongodb://localhost/safety-server"
 
 var port = process.env.PORT || 27017
