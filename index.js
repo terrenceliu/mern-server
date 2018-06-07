@@ -1,3 +1,5 @@
+const PORT = process.env.PORT || 8000
+
 // Library
 var express = require('express');
 var db = require('./db');
