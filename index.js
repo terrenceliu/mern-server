@@ -17,9 +17,10 @@ app.use('/api/req', requestController);
 
 // Routers
 app.get('/', function (req, res) {
+  console.log("Hit / dir.");
   res.status(200).send("Hello, World.");
 })
 
-app.listen(8000, function () {
-  console.log('Server listens on port 8000.');
+app.listen(PORT, function () {
+  console.log('Server listens on port ' + port);
 })
