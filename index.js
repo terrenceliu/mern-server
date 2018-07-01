@@ -9,7 +9,14 @@ var Request = require('./models/request');
 
 var requestController = require('./controllers/request-controller');
 
-app = express();
+// Express App
+var app = express();
+
+// Server
+var server = require('http').Server(app);
+
+// SocketIO
+var io = require('socket.io')(server);
 
 // Middlewares
 app.use(cors());
@@ -21,6 +28,16 @@ app.get('/', function (req, res) {
   res.status(200).send("Hello, World.");
 })
 
-app.listen(PORT, function () {
+// New Connection
+io.on('connection', function(socket) {
+  console.log("new connection");
+  socket.emit('request', {hello: 'World'});
+  
+  socket.on('request', function(msg) {
+    console.log(msg);
+  });
+});
+
+server.listen(PORT, function () {
   console.log('Server listens on port ' + PORT);
 })
