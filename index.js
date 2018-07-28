@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 // New Connection
 io.on('connection', function(socket) {
   console.log("new connection");
-  socket.emit('request', {hello: 'World'});
+  
   
   socket.on('request', function(msg) {
     console.log(msg);
