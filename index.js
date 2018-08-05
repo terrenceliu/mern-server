@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 8000
 var express = require('express');
 var db = require('./db');
 var cors = require('cors');
+var bodyParser = require('body-parser');
 
 var Request = require('./models/request');
 
@@ -20,6 +21,9 @@ var io = require('socket.io')(server);
 
 // Middlewares
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use('/api/req', requestController);
 
 // Routers
@@ -31,10 +35,10 @@ app.get('/', function (req, res) {
 // New Connection
 io.on('connection', function(socket) {
   console.log("new connection");
-  socket.emit('request', {hello: 'World'});
   
   socket.on('request', function(msg) {
     console.log(msg);
+    socket.broadcast.emit('request-update', msg);
   });
 });
 
