@@ -24,7 +24,7 @@ router.post('/', function(req, response) {
     // TODO: Validate tokens in req body.
     
     var instance = new Case();
-
+    
     instance.resolved = false;
 
     instance.packets = [];
