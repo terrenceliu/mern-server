@@ -77,7 +77,7 @@ router.get('/case', function (req, response) {
             response.status(500);
             return res.send();
         }
-
+        
         response.status(200);
         return response.send(result);
     });
