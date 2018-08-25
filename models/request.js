@@ -6,8 +6,8 @@ var RequestSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Case"
     },
-    longitude: Schema.Types.Number,
-    latitude: Schema.Types.Number,
+    lng: Schema.Types.Number,
+    lat: Schema.Types.Number,
     timestamp: {
         type: Date,
         default: Date.now

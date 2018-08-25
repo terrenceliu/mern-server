@@ -2,7 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema
 
 var CaseSchema = new Schema({
-    resolved: Schema.Types.Boolean
+    user_id: Schema.Types.String,
+    resolved: Schema.Types.Boolean,
+    case_id: Schema.Types.String,
+    packets: Schema.Types.Array,
+
 }, { 
     versionKey: false, 
     minimize: false
