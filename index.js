@@ -40,8 +40,8 @@ app.get('/', function (req, res) {
 
 
 var dash_sockets = new Set([]);
+
 // New Connection
-<<<<<<< HEAD
 io.on('connection', function (socket) {
     console.log("[New Connection] socket id = ", socket.id);
 
@@ -52,8 +52,16 @@ io.on('connection', function (socket) {
         console.log('[Client Type] ', type);
         if (type == 'dashboard') {
             dash_sockets.add(socket);
+            console.log('[Dash Sockets]', [...dash_sockets].map(x => x.id));
         }
     });
+    
+    socket.on('disconnect', function() {
+        // Remove disconnected dashboard
+        dash_sockets.delete(socket);
+
+        console.log('[Disconnect]', socket.id, [...dash_sockets].map(x => x.id));
+    })
 
     // Receive request
     socket.on('packet', function (data) {
@@ -64,15 +72,6 @@ io.on('connection', function (socket) {
             s.emit('packet', data);
         });
     });
-=======
-io.on('connection', function(socket) {
-  console.log("new connection");
-  
-  
-  socket.on('request', function(msg) {
-    console.log(msg);
-  });
->>>>>>> 7ed5d3dc33f5134453cb2843b2e6f0158b480736
 });
 
 server.listen(PORT, function () {

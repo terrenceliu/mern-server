@@ -1,5 +1,5 @@
 var express = require('express');
-var mongoose = require('mongooes');
+var mongoose = require('mongoose');
 var router = express.Router();
 
 var Case = require('../models/case');
@@ -55,4 +55,6 @@ router.get('/', function(req, response) {
         return response.send(result);
     })
 });
+
+module.exports = router;
 
